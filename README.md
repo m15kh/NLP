@@ -11,7 +11,7 @@ The notebook (`simple_RNN.ipynb`) demonstrates:
 - Evaluating model performance on test data
 
 ## Model Architecture
-
+ 
 The model consists of:
 1. Embedding layer (converts words to dense vectors of fixed size)
 2. SimpleRNN layer (processes sequential data and captures temporal dependencies)
