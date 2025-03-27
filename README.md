@@ -8,7 +8,7 @@ The notebook (`simple_RNN.ipynb`) demonstrates:
 - Basic usage of SimpleRNN layer in TensorFlow
 - Processing and preparing the IMDB dataset for sentiment analysis
 - Building and training a sequential model with embedding and RNN layers
-- Evaluating model performance on test data
+- Evaluating model performance on test data 
 
 ## Model Architecture
  
