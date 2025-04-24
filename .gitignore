@@ -1,4 +1,3 @@
-.vscode/
 *.model
 *.pkl
 __pycache__
