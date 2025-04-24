@@ -8,6 +8,7 @@ import seaborn as sns
 import numpy as np
 from pprint import pprint
 from collections import defaultdict
+from collections import Counter
 
 
 def load_hf_dataset(path_huggingface):
@@ -75,3 +76,25 @@ def samples_by_token_length(tokenized_samples, dataset, target_lengths_count=10,
         # Stop if we've collected all target_lengths_count * max_samples_per_length samples
         if sum(samples_per_length.values()) >= target_lengths_count * max_samples_per_length:
             break
+    
+def save_top_tokens(tokenized_train_samples, tokenizer, top_k=10_000, output_file="EDA_results/top_10k_tokens.txt"):
+    # Counter to keep track of token frequencies
+    token_counter = Counter()
+
+    # Iterate through all token IDs and update the counter
+    for tokens in tqdm(tokenized_train_samples, desc="Counting token frequencies"):
+        token_counter.update(tokens)
+
+    # Get the top_k most frequent tokens
+    top_tokens = token_counter.most_common(top_k)
+
+    # Ensure the output directory exists
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+
+    # Save to file for future use
+    with open(output_file, "w") as f:
+        for token_id, freq in top_tokens:
+            token_word = tokenizer.convert_ids_to_tokens(token_id)  # Convert token ID to word
+            f.write(f"{token_id}\t{token_word}\t{freq}\n")
+
+    print(f"\n🔹 {top_k} top tokens saved to {output_file}")

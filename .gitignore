@@ -1,3 +1,4 @@
 *.model
 *.pkl
 __pycache__
+*.png
