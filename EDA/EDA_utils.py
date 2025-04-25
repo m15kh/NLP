@@ -77,7 +77,7 @@ def samples_by_token_length(tokenized_samples, dataset, target_lengths_count=10,
         if sum(samples_per_length.values()) >= target_lengths_count * max_samples_per_length:
             break
     
-def save_top_tokens(tokenized_train_samples, tokenizer, top_k=10_000, output_file="EDA_results/top_10k_tokens.txt"):
+def save_top_tokens(tokenized_train_samples, top_k=10_000, output_file="EDA_results/top_10k_tokens.txt"):
     # Counter to keep track of token frequencies
     token_counter = Counter()
 
@@ -94,7 +94,6 @@ def save_top_tokens(tokenized_train_samples, tokenizer, top_k=10_000, output_fil
     # Save to file for future use
     with open(output_file, "w") as f:
         for token_id, freq in top_tokens:
-            token_word = tokenizer.convert_ids_to_tokens(token_id)  # Convert token ID to word
-            f.write(f"{token_id}\t{token_word}\t{freq}\n")
+            f.write(f"{token_id}\t{freq}\n")
 
     print(f"\n🔹 {top_k} top tokens saved to {output_file}")

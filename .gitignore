@@ -2,3 +2,4 @@
 *.pkl
 __pycache__
 *.png
+EDA/EDA_results/top_10k_tokens.txt
